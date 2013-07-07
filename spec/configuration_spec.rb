@@ -36,4 +36,10 @@ describe PetfinderJSON::Configuration do
       PetfinderJSON::Configuration::DEFAULT_ENDPOINT == 'http://api.petfinder.com'
     end
   end
+
+  describe 'format' do
+    it 'should return response format as json' do
+      PetfinderJSON::Configuration::DEFAULT_FORMAT == 'json'
+    end
+  end
 end

@@ -3,6 +3,7 @@ module PetfinderJSON
     DEFAULT_API_KEY    = nil
     DEFAULT_API_SECRET = nil
     DEFAULT_ENDPOINT   = 'http://api.petfinder.com'
+    DEFAULT_FORMAT     = 'json'
 
     attr_accessor :api_key, :api_secret
 
