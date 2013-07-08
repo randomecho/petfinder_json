@@ -10,7 +10,7 @@ For those times when using the XML libraries just don't work for you.
 - For Petfinder API keys, go to 
 [petfinder.com/developers/api-key](http://www.petfinder.com/developers/api-key)
 
-- List of API methods and parameters being called can be found at
+- List of API methods and parameters being wrapped can be found at
 [petfinder.com/developers/api-docs](http://www.petfinder.com/developers/api-docs)
 
 ## License
