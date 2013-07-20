@@ -2,9 +2,11 @@ module PetfinderJSON
   class Pet
     attr_reader :id, :age, :animal, :description, :last_update, :mix, 
       :name, :photos, :sex, :shelter_id, :shelter_pet_id, :size, :status,
-      :breeds, :contact, :media, :options
+      :breed, :contact, :media, :options
     
     def initialize(data)
+      @options = []
+
       data.each do |key, val|
         if key.is_a? String
           if val['$t'].is_a? NilClass
@@ -17,8 +19,6 @@ module PetfinderJSON
     end
     
     def multi_val(key, val)
-      @options = []
-      @breed = []
       case key
       when "options"
         val['option'].each do |option|
