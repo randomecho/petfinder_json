@@ -1,6 +1,12 @@
 module PetfinderJSON
   module Client
 
+    # Required: id       - integer - pet ID
+    def pet(id)
+      pet = connect('/pet.get', :id => id)
+      Pet.new(pet['petfinder']['pet'])
+    end
+
     # Required: animal   - string  - pick from: barnyard, bird, cat, dog, 
     #                                  horse, pig, reptile, smallfurry
     def breeds(animal)

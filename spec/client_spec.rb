@@ -9,6 +9,14 @@ describe PetfinderJSON::Client do
     end
   end
 
+  describe 'pet details' do
+    it 'get a specific pet' do
+      pet = PetfinderJSON.pet('26108370')
+      pet.name.should == 'Asher'
+    end
+
+  end
+
   describe 'breed info' do
     it 'gets list of breeds per animal' do
       breeds = PetfinderJSON.breeds('barnyard')
