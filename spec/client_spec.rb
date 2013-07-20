@@ -7,12 +7,22 @@ describe PetfinderJSON::Client do
       config.api_key = 'YOUR_API_KEY'
       config.api_secret = 'YOUR_API_SECRET'
     end
+
+    @pet = PetfinderJSON.pet('26108370')
   end
 
   describe 'pet details' do
+
     it 'get a specific pet' do
-      pet = PetfinderJSON.pet('26108370')
-      pet.name.should == 'Asher'
+      @pet.name.should == 'Asher'
+    end
+
+    it 'specific pet has had its shots' do
+      @pet.options.should include('hasShots')
+    end
+
+    it 'and is of a particular breed' do
+      @pet.breed.should include('Cairn Terrier')
     end
 
   end

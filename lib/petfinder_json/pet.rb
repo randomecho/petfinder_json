@@ -6,6 +6,7 @@ module PetfinderJSON
     
     def initialize(data)
       @options = []
+      @breed = []
 
       data.each do |key, val|
         if key.is_a? String
@@ -23,6 +24,10 @@ module PetfinderJSON
       when "options"
         val['option'].each do |option|
           @options << option['$t']
+        end
+      when "breeds"
+        val['breed'].each do |breed|
+          @breed << breed['$t']
         end
       end
     end
