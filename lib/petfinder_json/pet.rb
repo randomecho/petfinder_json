@@ -21,13 +21,23 @@ module PetfinderJSON
     
     def multi_val(key, val)
       case key
-      when "options"
-        val['option'].each do |option|
-          @options << option['$t']
-        end
       when "breeds"
-        val['breed'].each do |breed|
-          @breed << breed['$t']
+        if val['breed'].count > 1
+          val['breed'].each do |breed_type|
+            @breed << breed_type['$t']
+          end
+        else
+          @breed << val['breed']['$t']
+        end
+      when "options"
+        if val['option']
+          if val['option'].count > 1
+            val['option'].each do |option|
+              @options << option['$t']
+            end
+          else
+            @options << val['option']['$t']
+          end
         end
       end
     end
