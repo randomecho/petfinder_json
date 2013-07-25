@@ -9,6 +9,7 @@ describe PetfinderJSON::Client do
     end
 
     @pet = PetfinderJSON.pet('26108370')
+    @pet_gerbil = PetfinderJSON.pet('25491955')
   end
 
   describe 'pet details' do
@@ -25,6 +26,18 @@ describe PetfinderJSON::Client do
       @pet.breed.should include('Cairn Terrier')
     end
 
+    it 'another pet is a single type breed' do
+      @pet_gerbil.breed.should include('Gerbil')
+    end
+
+    it 'has no contact email address' do
+      @pet.email.should == nil
+    end
+
+    it 'has contact email address' do
+      @pet_gerbil.email.should == 'pikecountyhs@gmail.com'
+    end
+
   end
 
   describe 'breed info' do
@@ -35,4 +48,5 @@ describe PetfinderJSON::Client do
     end
 
   end
+
 end

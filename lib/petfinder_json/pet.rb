@@ -2,7 +2,8 @@ module PetfinderJSON
   class Pet
     attr_reader :id, :age, :animal, :description, :last_update, :mix, 
       :name, :photos, :sex, :shelter_id, :shelter_pet_id, :size, :status,
-      :breed, :contact, :media, :options
+      :email, :phone, :fax, :address1, :address2, :city, :state, :zip,
+      :breed, :media, :options
     
     def initialize(data)
       @options = []
@@ -28,6 +29,10 @@ module PetfinderJSON
           end
         else
           @breed << val['breed']['$t']
+        end
+      when "contact"
+        val.each do |info|
+          instance_variable_set("@" + info[0], info[1]['$t'])
         end
       when "options"
         if val['option']
