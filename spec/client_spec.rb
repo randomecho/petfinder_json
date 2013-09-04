@@ -38,6 +38,11 @@ describe PetfinderJSON::Client do
       @pet_gerbil.email.should == 'pikecountyhs@gmail.com'
     end
 
+    it 'has a photo' do
+      @pet_gerbil.photos.should be_an(Array)
+      @pet_gerbil.photos[0][:thumbnail].should include('.jpg')
+    end
+
   end
 
   describe 'breed info' do
@@ -46,7 +51,6 @@ describe PetfinderJSON::Client do
       breeds.breeds_list.count.should > 1
       breeds.breeds_list.first.should == 'Alpaca'
     end
-
   end
 
 end
