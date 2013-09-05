@@ -2,7 +2,7 @@ require 'petfinder_json'
 
 describe PetfinderJSON::Client do
 
-  before do
+  before(:all) do
     PetfinderJSON.configure do |config|
       config.api_key = 'YOUR_API_KEY'
       config.api_secret = 'YOUR_API_SECRET'
