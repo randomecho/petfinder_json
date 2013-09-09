@@ -23,13 +23,7 @@ module PetfinderJSON
     def multi_val(key, val)
       case key
       when "breeds"
-        if val['breed'].count > 1
-          val['breed'].each do |breed_type|
-            @breed << breed_type['$t']
-          end
-        else
-          @breed << val['breed']['$t']
-        end
+        @breed = extract_breeds(val['breed'])
       when "contact"
         val.each do |info|
           instance_variable_set("@" + info[0], info[1]['$t'])
@@ -47,6 +41,20 @@ module PetfinderJSON
       when "media"
         @photos = extract_photos(val['photos']['photo'])
       end
+    end
+    
+    def extract_breeds(breed_data)
+      breed_info = Array.new()
+      
+      if breed_data.count > 1
+        breed_data.each do |breed_type|
+          breed_info << breed_type['$t']
+        end
+      else
+        breed_info << breed_data['$t']
+      end
+      
+      return breed_info
     end
     
     def extract_photos(photo_data)
