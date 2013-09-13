@@ -29,15 +29,7 @@ module PetfinderJSON
           instance_variable_set("@" + info[0], info[1]['$t'])
         end
       when "options"
-        if val['option']
-          if val['option'].count > 1
-            val['option'].each do |option|
-              @options << option['$t']
-            end
-          else
-            @options << val['option']['$t']
-          end
-        end
+        @options = extract_options(val['option'])
       when "media"
         @photos = extract_photos(val['photos']['photo'])
       end
@@ -55,6 +47,22 @@ module PetfinderJSON
       end
       
       return breed_info
+    end
+    
+    def extract_options(option_data)
+      option_info = Array.new()
+
+      if option_data
+        if option_data.count > 1
+          option_data.each do |option|
+            option_info << option['$t']
+          end
+        else
+          option_info << option_data['$t']
+        end
+      end
+      
+      return option_info
     end
     
     def extract_photos(photo_data)
